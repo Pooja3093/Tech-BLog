@@ -1,5 +1,16 @@
 const router = require("express").Router();
-const { User } = require("../../models");
+const { User, Post } = require("../../models");
+var posts;
+
+Post.findAll({
+  include: [User]
+})
+  .then((dbPostData) => {
+    posts = dbPostData.map((post) => post.get({ plain: true }));
+  })
+  .catch((err) => {
+    res.status(500).json(err);
+  });
 
 router.post("/", (req, res) => {
   User.create({
@@ -11,8 +22,8 @@ router.post("/", (req, res) => {
       req.session.userId = dbUserData.id;
       req.session.username = dbUserData.username;
       req.session.loggedIn = true;
-
-      res.json(dbUserData);
+      res.render("all-post", { posts, loggedIn: req.session.loggedIn });
+      // res.json(dbUserData);
     });
   })
   .catch(err => {
@@ -43,9 +54,9 @@ router.post("/login", (req, res) => {
       req.session.userId = dbUserData.id;
       req.session.username = dbUserData.username;
       req.session.loggedIn = true;
-  
-      res.json({ user: dbUserData, message: 'You are now logged in!' });
+      res.render("all-post", { posts, loggedIn: req.session.loggedIn });
     });
+    
   });
 });
 
@@ -54,7 +65,7 @@ router.get('/logout', (req, res) => {
     req.session.destroy(() => {
       res.status(204).end();
     });
-    res.render("all-post");
+    res.render("all-post", {posts});
   }
   else {
     res.status(404).end();

@@ -12,7 +12,8 @@ const loginFormHandler = async function(event) {
     headers: { "Content-Type": "application/json" }
   })
     .then(function() {
-      document.location.replace('/');
+      console.log("you're logged in.");
+      document.location.replace("/");
     })
     .catch(err => console.log(err));
 };

@@ -12,7 +12,7 @@ const signupFormHandler = async function(event) {
     headers: { "Content-Type": "application/json" }
   })
     .then(function() {
-      document.location.replace("/dashboard");
+      document.location.replace("/");
     })
     .catch(err => console.log(err));
 };
