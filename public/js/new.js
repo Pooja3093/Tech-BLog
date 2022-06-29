@@ -4,7 +4,7 @@ const newFormHandler = async function(event) {
     const title = document.querySelector('input[name="post-title"]').value;
     const body = document.querySelector('textarea[name="post-body"]').value;
   
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
     await fetch(`/api/post`, {
       method: "POST",
       body: JSON.stringify({
@@ -13,11 +13,11 @@ const newFormHandler = async function(event) {
       }),
       headers: {
         "Content-Type": "application/json",
-        authorization: `Bearer ${token}`
+        // authorization: `Bearer ${token}`
       }
     });
   
-    document.location.replace("/dashboard");
+    document.location.replace("/");
   };
   
   document

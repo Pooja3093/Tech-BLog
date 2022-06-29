@@ -1,3 +1,4 @@
+{{#if loggedIn}}
 <div class="post">
   <article class="card">
     <div class="card-header flex-row justify-space-between">
@@ -48,5 +49,7 @@
     </div>
   </form>
 </div>
-
-<script src="/javascript/comment.js"></script>
+{{else}}
+    <a href="/login">Login Required!</a>
+  {{/if}}
+<script src="/js/comment.js"></script>

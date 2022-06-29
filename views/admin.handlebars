@@ -2,7 +2,9 @@
   {{#each posts}}
     <a class="list-item flex-row justify-space-between" href="/dashboard/edit/{{id}}">
       <span>{{title}}</span>
-      <span>{{format_date createdAt}}</span>
+      <span>
+        Posted by {{post.User.username}} on {{format_date createdAt}}
+      </span>
     </a>
   {{/each}}
 </div>

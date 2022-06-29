@@ -49,34 +49,16 @@ router.post("/login", (req, res) => {
   });
 });
 
-router.post('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
     });
+    res.render("all-post");
   }
   else {
     res.status(404).end();
   }
-});
-
-router.delete("/user/:id", (req, res) => {
-  User.destroy({
-    where: {
-      id: req.params.id
-    }
-  })
-  .then(dbUserData => {
-    if (!dbUserData) {
-      res.status(404).json({ message: 'No user found with this id' });
-      return;
-    }
-    res.json(dbUserData);
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  });
 });
 
 module.exports = router;
