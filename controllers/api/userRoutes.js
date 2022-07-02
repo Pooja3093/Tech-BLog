@@ -2,15 +2,6 @@ const router = require("express").Router();
 const { User, Post } = require("../../models");
 var posts;
 
-Post.findAll({
-  include: [User]
-})
-  .then((dbPostData) => {
-    posts = dbPostData.map((post) => post.get({ plain: true }));
-  })
-  .catch((err) => {
-    res.status(500).json(err);
-  });
 
 router.post("/", (req, res) => {
   User.create({

@@ -38,7 +38,7 @@ To use this application, change the user_name, password for mysql and a database
 
 [GitHub Repository](https://github.com/Pooja3093/glowing-octo-rotary-phone.git)
 
-[Heroku Deployed app]()
+[Heroku Deployed app](https://metric-backbacon-33385.herokuapp.com/)
 
 
 ## Scrennshot
