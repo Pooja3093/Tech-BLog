@@ -54,11 +54,12 @@ router.post("/login", (req, res) => {
       req.session.userId = dbUserData.id;
       req.session.username = dbUserData.username;
       req.session.loggedIn = true;
-      res.render("all-post", { posts, loggedIn: req.session.loggedIn });
+    res.redirect('/');
     });
     
   });
 });
+
 
 router.get('/logout', (req, res) => {
   if (req.session.loggedIn) {
